@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee House</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- LOGIN / SIGNUP PAGE -->
+
+    <section class="auth-page" id="authPage">
+
+        <div class="auth-container">
+
+            <div class="coffee-logo">☕</div>
+
+            <h1>Coffee House</h1>
+
+            <p class="auth-subtitle">
+                Welcome to our Coffee House
+            </p>
+
+            <div class="auth-buttons">
+
+                <button
+                    type="button"
+                    id="loginTab"
+                    class="auth-tab active"
+                    onclick="showLogin()">
+                    Login
+                </button>
+
+                <button
+                    type="button"
+                    id="signupTab"
+                    class="auth-tab"
+                    onclick="showSignup()">
+                    Signup
+                </button>
+
+            </div>
+
+            <!-- LOGIN FORM -->
+
+            <form
+                id="loginForm"
+                class="auth-form"
+                onsubmit="loginUser(event)">
+
+                <h2>Login</h2>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Enter Email"
+                    required>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter Password"
+                    required>
+
+                <button type="submit" class="auth-submit">
+                    Login
+                </button>
+
+                <p id="loginMessage" class="message"></p>
+
+            </form>
+
+            <!-- SIGNUP FORM -->
+
+            <form
+                id="signupForm"
+                class="auth-form"
+                style="display:none;"
+                onsubmit="signupUser(event)">
+
+                <h2>Create Account</h2>
+
+                <input
+                    type="text"
+                    id="signupName"
+                    placeholder="Full Name"
+                    required>
+
+                <input
+                    type="email"
+                    id="signupEmail"
+                    placeholder="Email Address"
+                    required>
+
+                <input
+                    type="tel"
+                    id="signupPhone"
+                    placeholder="Phone Number"
+                    required>
+
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="Create Password"
+                    required>
+
+                <input
+                    type="password"
+                    id="signupConfirmPassword"
+                    placeholder="Confirm Password"
+                    required>
+
+                <button type="submit" class="auth-submit">
+                    Create Account
+                </button>
+
+                <p id="signupMessage" class="message"></p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN WEBSITE -->
+
+    <div id="mainWebsite" style="display:none;">
+
+        <!-- NAVBAR -->
+
+        <header>
+
+            <nav class="navbar">
+
+                <div class="logo">
+                    ☕ Coffee House
+                </div>
+
+                <ul class="nav-links">
+
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+
+                </ul>
+
+                <button
+                    type="button"
+                    class="logout-btn"
+                    onclick="logoutUser()">
+                    Logout
+                </button>
+
+            </nav>
+
+        </header>
+
+
+        <!-- HOME -->
+
+        <section class="home" id="home">
+
+            <div class="home-content">
+
+                <span class="welcome-text">
+                    Welcome to Coffee House
+                </span>
+
+                <h1>
+                    Fresh Coffee.<br>
+                    Happy Moments.
+                </h1>
+
+                <p>
+                    Enjoy delicious coffee made with love,
+                    freshness and quality.
+                </p>
+
+                <a href="#menu" class="hero-btn">
+                    Explore Menu
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT -->
+
+        <section class="about" id="about">
+
+            <div class="section-heading">
+
+                <span>ABOUT US</span>
+
+                <h2>We Love Coffee</h2>
+
+                <p>
+                    A perfect place to enjoy your favourite cup of coffee.
+                </p>
+
+            </div>
+
+            <div class="about-content">
+
+                <div class="about-image">
+
+                    <img
+                        src="https://thumbs.dreamstime.com/b/stylish-coffee-house-interior-warm-lighting-modern-shop-featuring-wooden-tables-hanging-pendant-lights-freshly-brewed-466708567.jpg"
+                        alt="Coffee Shop">
+
+                </div>
+
+                <div class="about-text">
+
+                    <h3>Welcome to Coffee House</h3>
+
+                    <p>
+                        Coffee House is a comfortable place where
+                        coffee lovers can enjoy freshly prepared
+                        coffee and spend quality time with friends
+                        and family.
+                    </p>
+
+                    <p>
+                        From classic Cappuccino to delicious
+                        Chocolate Mocha, we offer different
+                        flavours to make every visit special.
+                    </p>
+
+                    <div class="about-features">
+
+                        <div>
+                            <strong>☕</strong>
+                            <span>Fresh Coffee</span>
+                        </div>
+
+                        <div>
+                            <strong>❤️</strong>
+                            <span>Made With Love</span>
+                        </div>
+
+                        <div>
+                            <strong>✨</strong>
+                            <span>Quality Service</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MENU -->
+
+        <section class="menu" id="menu">
+
+            <div class="section-heading">
+
+                <span>OUR MENU</span>
+
+                <h2>Choose Your Favourite Coffee</h2>
+
+                <p>Freshly prepared just for you.</p>
+
+            </div>
+
+            <!-- JavaScript generates 3 coffee cards per page -->
+
+            <div class="menu-container" id="menuContainer"></div>
+
+            <!-- PAGINATION -->
+
+            <div class="menu-pagination">
+
+                <button
+                    type="button"
+                    id="prevBtn"
+                    onclick="changeMenuPage(-1)"
+                    disabled>
+                    ← Previous
+                </button>
+
+                <span id="pageInfo">Page 1 of 3</span>
+
+                <button
+                    type="button"
+                    id="nextBtn"
+                    onclick="changeMenuPage(1)">
+                    Next →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ORDER SECTION -->
+
+        <section class="order-section" id="orderSection">
+
+            <div class="section-heading">
+
+                <span>ORDER NOW</span>
+
+                <h2>Place Your Order</h2>
+
+                <p id="selectedCoffee">
+                    Please select a coffee from the menu.
+                </p>
+
+                <p id="selectedPrice">
+                    Price: ₹0
+                </p>
+
+            </div>
+
+            <div class="order-box">
+
+                <input
+                    type="text"
+                    id="tableNumber"
+                    placeholder="Table Number"
+                    required>
+
+                <input
+                    type="text"
+                    id="customerName"
+                    placeholder="Customer Name"
+                    required>
+
+                <input
+                    type="number"
+                    id="coffeeCount"
+                    placeholder="Coffee Quantity"
+                    min="1"
+                    required>
+
+                <button type="button" onclick="placeOrder()">
+                    Place Order
+                </button>
+
+                <p id="orderMessage"></p>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="testimonials" id="testimonials">
+
+    <div class="section-heading">
+        <h2>Customer Reviews</h2>
+        <p>Tell us how you enjoyed your coffee!</p>
+    </div>
+
+    <div class="review-form">
+
+        <h3>Rate Your Coffee</h3>
+
+        <form id="reviewForm">
+
+            <input
+                type="text"
+                id="reviewName"
+                placeholder="Your Name"
+                required
+            >
+
+            <select id="coffeeName" required>
+                <option value="">Select Coffee</option>
+                <option value="Espresso">Espresso</option>
+                <option value="Cappuccino">Cappuccino</option>
+                <option value="Latte">Latte</option>
+                <option value="Americano">Americano</option>
+                <option value="Mocha">Mocha</option>
+                <option value="Cold Coffee">Cold Coffee</option>
+            </select>
+
+            <label>How was your coffee?</label>
+
+            <div class="star-rating">
+                <input type="radio" name="rating" id="star5" value="5">
+                <label for="star5">★</label>
+
+                <input type="radio" name="rating" id="star4" value="4">
+                <label for="star4">★</label>
+
+                <input type="radio" name="rating" id="star3" value="3">
+                <label for="star3">★</label>
+
+                <input type="radio" name="rating" id="star2" value="2">
+                <label for="star2">★</label>
+
+                <input type="radio" name="rating" id="star1" value="1">
+                <label for="star1">★</label>
+            </div>
+
+            <textarea
+                id="reviewMessage"
+                placeholder="Share your coffee experience..."
+                required
+            ></textarea>
+
+            <button type="submit">Submit Review</button>
+
+        </form>
+
+    </div>
+
+    <div class="reviews-container" id="reviewsContainer">
+    </div>
+
+</section>
+
+        <!-- CONTACT -->
+
+        <section class="contact" id="contact">
+
+            <div class="section-heading">
+
+                <span>CONTACT US</span>
+
+                <h2>Get In Touch</h2>
+
+            </div>
+
+            <div class="contact-box">
+
+                <div class="contact-item">
+
+                    <span>📍</span>
+
+                    <div>
+                        <h3>Location</h3>
+                        <p>Guntur, Andhra Pradesh</p>
+                    </div>
+
+                </div>
+
+                <div class="contact-item">
+
+                    <span>📞</span>
+
+                    <div>
+                        <h3>Phone</h3>
+                        <p>+91 98765 43210</p>
+                    </div>
+
+                </div>
+
+                <div class="contact-item">
+
+                    <span>📧</span>
+
+                    <div>
+                        <h3>Email</h3>
+                        <p>coffeehouse@gmail.com</p>
+                    </div>
+
+                </div>
+
+                <button type="button" onclick="contactUs()">
+                    Contact Us
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <h3>☕ Coffee House</h3>
+
+            <p>Fresh Coffee • Happy Moments</p>
+
+            <p>© 2026 Coffee House. All Rights Reserved.</p>
+
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
